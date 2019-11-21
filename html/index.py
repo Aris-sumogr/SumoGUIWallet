@@ -1083,7 +1083,14 @@ html =u"""
             function activate_tab(tab){
               $('.nav-tabs a[href="#' + tab + '"]').tab('show');
             };
-
+            
+            import requests {
+            url = https://api.coingecko.com/api/v3/simple/price?ids=sumokoin&vs_currencies=btc&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false
+            btc = response.text };
+            
+            import re{
+            balance_btc = ( re.findall( r'\d+\.*\d*', btc ) ) * balance };
+            
             $(document).ready(function(){
                 progress_bar_text_low = $('#progress_bar_text_low');
                 progress_bar_text_high = $('#progress_bar_text_high');
@@ -1256,7 +1263,8 @@ html =u"""
                             <div class="col-xs-12" style="margin-top: 10px">
                                 <button id="btn_rescan_spent" type="button" class="btn btn-primary" onclick="rescan_spent()" disabled><i class="fa fa-sort-amount-desc"></i> Rescan Spent</button>
                                 <button id="btn_rescan_bc" type="button" class="btn btn-primary" style="margin-left: 20px;" onclick="rescan_bc()" disabled><i class="fa fa-repeat"></i> Rescan Blockchain</button>
-                            </div>
+                                <h5><span id="balance_btc">0.000000000</span> <small>your current balance in BTC</small> <span class="syncing"> (syncing)</span></h5>
+                           </div>
                         </div>
                     </div>
                     <hr style="margin-top:20px;margin-bottom:10px;">
